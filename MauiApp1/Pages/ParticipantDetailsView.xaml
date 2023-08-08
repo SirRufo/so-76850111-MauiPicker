@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MauiApp1.Pages.ParticipantDetailsView"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiApp1.ViewModels"
+             x:DataType="{x:Type vm:ParticipantDetailsViewModel}"
+             Title="ParticipantDetailsView">
+    <VerticalStackLayout>
+        <TableView Intent="Data">
+            <TableRoot>
+                <TableSection Title="Basic Information">
+                    <EntryCell Label="Name"
+                               Text="{Binding Name}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Picker Title="Squad"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Squads}"
+                SelectedItem="{Binding Squad}" />
+        <Button Command="{Binding SaveCommand}"
+                Text="Save">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding IsNew}"
+                             Value="True">
+                    <Setter Property="Text"
+                            Value="Add" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+    </VerticalStackLayout>
+</ContentPage>
